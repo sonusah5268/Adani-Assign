@@ -2,63 +2,63 @@
 using namespace std;
 
 
-int adani2(int arr[], int srr[], int n, int m) { 
+int adani2(int arr[], int srr[], int p, int q) { 
     int i = 0;
     int j = 0; 
     int cnt; 
-    int m1 = -1, m2 = -1; 
-    if((m + n) % 2 == 1) { 
-        for (cnt = 0; cnt <= (n + m)/2; cnt++) { 
-            if(i != n && j != m) { 
-                m1 = (arr[i] > srr[j]) ? srr[j++] : arr[i++]; 
+    int s = -1, r = -1; 
+    if((q + p) % 2 == 1) { 
+        for (cnt = 0; cnt <= (p + q)/2; cnt++) { 
+            if(i != p && j != q) { 
+                s = (arr[i] > srr[j]) ? srr[j++] : arr[i++]; 
             } 
-            else if(i < n) { 
-                m1 = arr[i++]; 
+            else if(i < p) { 
+                s = arr[i++]; 
             } 
             else { 
-                m1 = srr[j++]; 
+                s = srr[j++]; 
             } 
         } 
-        return m1; 
+        return s; 
     } 
       
     else  { 
-        for (cnt = 0; cnt <= (n + m)/2; cnt++) { 
-            m2 = m1; 
-            if(i != n && j != m) { 
-                m1 = (arr[i] > srr[j]) ? srr[j++] : arr[i++]; 
+        for (cnt = 0; cnt <= (p + q)/2; cnt++) { 
+            r = s; 
+            if(i != p && j != q) { 
+                s = (arr[i] > srr[j]) ? srr[j++] : arr[i++]; 
             } 
-            else if(i < n) { 
-                m1 = arr[i++]; 
+            else if(i < p) { 
+                s = arr[i++]; 
             } 
              
             else { 
-                m1 = srr[j++]; 
+                s = srr[j++]; 
             } 
         } 
-        return (m1 + m2)/2; 
+        return (s + r)/2; 
     } 
 } 
   
   
 int main() {
-    int n, m;
-    cin >> n >> m;
-    int arr[n];
-    int srr[m];
+    int p, q;
+    cin >> p >> q;
+    int arr[p];
+    int srr[q];
     
-    for(int i = 0; i < n; i++) {
+    for(int i = 0; i < p; i++) {
         cin >> arr[i];
     }
     
-     for(int i = 0; i < m; i++) {
+     for(int i = 0; i < q; i++) {
         cin >> srr[i];
     }
     
-    sort(arr, arr + n);
-    sort(srr, srr + m, greater<int>());
+    sort(arr, arr + p);
+    sort(srr, srr + q, greater<int>());
     
-    cout << adani2(arr, srr, n, m) << endl;
+    cout << adani2(arr, srr, p, q) << endl;
     
     
 	return 0;
