@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+int adani2(int arr[], int srr[], int n, int m) { 
+    int i = 0;
+    int j = 0; 
+    int cnt; 
+    int m1 = -1, m2 = -1; 
+    if((m + n) % 2 == 1) { 
+        for (cnt = 0; cnt <= (n + m)/2; cnt++) { 
+            if(i != n && j != m) { 
+                m1 = (arr[i] > srr[j]) ? srr[j++] : arr[i++]; 
+            } 
+            else if(i < n) { 
+                m1 = arr[i++]; 
+            } 
+            else { 
+                m1 = srr[j++]; 
+            } 
+        } 
+        return m1; 
+    } 
+      
+    else  { 
+        for (cnt = 0; cnt <= (n + m)/2; cnt++) { 
+            m2 = m1; 
+            if(i != n && j != m) { 
+                m1 = (arr[i] > srr[j]) ? srr[j++] : arr[i++]; 
+            } 
+            else if(i < n) { 
+                m1 = arr[i++]; 
+            } 
+             
+            else { 
+                m1 = srr[j++]; 
+            } 
+        } 
+        return (m1 + m2)/2; 
+    } 
+} 
+  
+  
+int main() {
+    int n, m;
+    cin >> n >> m;
+    int arr[n];
+    int srr[m];
+    
+    for(int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    
+     for(int i = 0; i < m; i++) {
+        cin >> srr[i];
+    }
+    
+    sort(arr, arr + n);
+    sort(srr, srr + m, greater<int>());
+    
+    cout << adani2(arr, srr, n, m) << endl;
+    
+    
+	return 0;
+}
